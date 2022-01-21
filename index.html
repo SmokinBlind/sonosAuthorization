@@ -1,20 +1,68 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <link rel="stylesheet" href="style.css">
+    <body>
+        <form class="form" id="create_auth_code_form">
+            <label for="api_key">client_id</label>
+            <input type="text" id="api_key" name="api_key" value="" required>
+            <br><br>
+            <label for="response_type">response_type</label>
+            <input type="text" id="response_type" name="response_type" value="code" required readonly>
+            <br><br>
+            <label for="state">state</label>
+            <input type="text" id="state" name="state" value="testState" required>
+            <br><br>
+            <label for="scope">scope</label>
+            <input type="text" id="scope" name="scope" value="playback-control-all" required readonly>
+            <br><br>
+            <label for="redirect_uri">redirect_uri</label>
+            <input type="text" id="redirect_uri" name="redirect_uri" value="https://SmokinBlind/sonosAuthorization/">
+            <br><br>
+            <input type="submit" class="btn" value="Submit">
+            </button>
+        </form>
+        <br><br>
+        <h1>Auth API</h1>
+        <form class="form" id="create_token_form">
+            <label for="client_id1">client_id</label>
+            <input type="text" id="client_id1" name="client_id1" value="">
+            <br><br>
+            <label for="redirect_uri">client_secret</label>
+            <input type="password" id="client_secret" name="client_secret" value="">
+            <br><br>
+            <label for="grant_type">grant_type</label>
+            <input type="text" id="grant_type" name="grant_type" value="authorization_code" required readonly>
+            <br><br>
+            <label for="code">code</label>
+            <input type="text" id="code" name="code" value="" required>
+            <br><br>
+            <label for="redirect_uri">redirect_uri</label>
+            <input type="text" id="redirect_uri1" name="redirect_uri" value="https://SmokinBlind/sonosAuthorization/">
+            <br><br>
+            <input type="submit" class="btn" value="Submit">
+            <br><br>
+            <label for="code__">Curl Code</label>
+            <curl id="code__" name="code__" class="curl_box">curl</curl>
+            </button>
+        </form>
         <script>
-            function doRedirect() {
-                const params = window.location.search;
-                const urlParams = new URLSearchParams(params);
-                const state = urlParams.get('state');
-                if (state != null && state.length > 0) {
-                    // Set text.;
-                    setTimeout(function(){document.getElementById('message').innerHTML = "Redirecting."; }, 1500);
-                    setTimeout(function(){window.location.replace(urlParams.get('state') + params); }, 2000);
-                } else {
-                    document.getElementById('message').innerHTML = "Auth Failure! A required parameter was missing.<br>Try using Chrome instead.";
-                }
+            document.getElementById("create_auth_code_form").onsubmit = function(e){
+                e.preventDefault()
+                if(document.getElementById("redirect_uri").value === "") link = `https://api.sonos.com/login/v3/oauth?client_id=${document.getElementById("api_key").value}&response_type=${document.getElementById("response_type").value}&state=${document.getElementById("state").value}&scope=${document.getElementById("scope").value}`
+                else link = `https://api.sonos.com/login/v3/oauth?client_id=${document.getElementById("api_key").value}&response_type=${document.getElementById("response_type").value}&state=${document.getElementById("state").value}&scope=${document.getElementById("scope").value}&redirect_uri=${document.getElementById("redirect_uri").value}`
+                //console.log(link)
+                window.open(link, '_blank').focus();
             }
-            document.addEventListener('DOMContentLoaded', doRedirect);
+            document.getElementById("create_token_form").onsubmit = function(e){
+                e.preventDefault()
+                thecurl = `curl -X POST -H "Content-Type: application/x-www-form-urlencoded;charset=utf-8" \
+        -H "Authorization: Basic ${btoa(`${document.getElementById("client_id1").value}:${document.getElementById("client_secret").value}`)}" \
+        "https://api.sonos.com/login/v3/oauth/access" \
+        -d "grant_type=${document.getElementById("grant_type").value}&code=${document.getElementById("code").value}&redirect_uri=${encodeURIComponent(document.getElementById("redirect_uri"))}"`
+                console.log(thecurl)
+                document.getElementById("code__").innerHTML = thecurl
+            }
+            console.log(window.location.search)
         </script>
-    </head>
+    </body>
 </html>
