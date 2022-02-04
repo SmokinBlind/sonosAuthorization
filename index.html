@@ -9,9 +9,9 @@
                     // Set text.;
                     // setTimeout(function(){document.getElementById('message').innerHTML = "Redirecting."; }, 1500);
                     setTimeout(function(){window.location.replace(urlParams.get('coreAddress') + params); }, 2000);
-                } else {
-                    document.getElementById('message').innerHTML = "Auth Failure! A required parameter was missing.<br>Try using Chrome instead.";
-                }
+                } //else {
+                    //document.getElementById('message').innerHTML = "Auth Failure! A required parameter was missing.<br>Try using Chrome instead.";
+                //}
             }
             document.addEventListener('DOMContentLoaded', doRedirect);
         </script>
