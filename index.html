@@ -8,7 +8,7 @@
                 if (state != null && state.length > 0) {
                     // Set text.;
                     // setTimeout(function(){document.getElementById('message').innerHTML = "Redirecting."; }, 1500);
-                    setTimeout(function(){window.location.replace(urlParams.get('core') + params); }, 2000);
+                    setTimeout(function(){window.location.replace(urlParams.get('state') + params); }, 2000);
                 } else {
                     document.getElementById('message').innerHTML = "Auth Failure! A required parameter was missing.<br>Try using Chrome instead.";
                 }
