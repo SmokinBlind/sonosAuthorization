@@ -4,7 +4,7 @@
             function doRedirect() {
                 const params = window.location.search;
                 const urlParams = new URLSearchParams(params);
-                const state = urlParams.get('state');
+                const state = urlParams.get('coreAddress');
                 if (state != null && state.length > 0) {
                     // Set text.;
                     // setTimeout(function(){document.getElementById('message').innerHTML = "Redirecting."; }, 1500);
