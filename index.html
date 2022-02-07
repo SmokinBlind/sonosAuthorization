@@ -5,7 +5,7 @@
                 const params = window.location.search;
                 const urlParams = new URLSearchParams(params);
                 const state = urlParams.get('coreAddress');
-                if (state != null && state.length > 0) {
+                if (coreAddress != null && coreAddress.length > 0) {
                     // Set text.;
                     // setTimeout(function(){document.getElementById('message').innerHTML = "Redirecting."; }, 1500);
                     setTimeout(function(){window.location.replace(urlParams.get('coreAddress') + params); }, 2000);
