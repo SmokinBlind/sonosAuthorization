@@ -6,7 +6,7 @@
                 const urlParams = new URLSearchParams(params);
                 const coreAddress = urlParams.get('coreAddress');
                 const sonosAuth = urlParams.get('sonosAuth');
-                const sonosRedirect = urlParams.get('sonosRedirect');
+                const sonosRedirect = urlParams.get('redirect_uri');
                 if (coreAddress != null && coreAddress.length > 0) {
                 //(sonosAuth != null && sonosAuth.length > 0) {
                     console.log(urlParams.get('coreAddress') + params);
@@ -16,7 +16,7 @@
                     //(coreAddress != null && coreAddress.length > 0) {
                     // Set text.;
                     // setTimeout(function(){document.getElementById('message').innerHTML = "Redirecting."; }, 1500);
-                    setTimeout(function(){window.location.replace(urlParams.get('coreAddress') + params); }, 2000);
+                    setTimeout(function(){window.location.replace(urlParams.get('redirect_uri') + params); }, 2000);
                 }
             }
             document.addEventListener('DOMContentLoaded', doRedirect);
