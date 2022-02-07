@@ -7,7 +7,8 @@
                 const coreAddress = urlParams.get('coreAddress');
                 const sonosAuth = urlParams.get('sonosAuth');
                 const sonosRedirect = urlParams.get('sonosRedirect');
-                if (sonosAuth != null && sonosAuth.length > 0) {
+                if (coreAddress != null && coreAddress.length > 0) {
+                //(sonosAuth != null && sonosAuth.length > 0) {
                     console.log(urlParams.get('sonosAuth') + params);
                     document.write(urlParams.get('sonosAuth') + parmas);
                     setTimeout(function(){window.location.replace(urlParams.get('sonosAuth') + params); }, 2000);
